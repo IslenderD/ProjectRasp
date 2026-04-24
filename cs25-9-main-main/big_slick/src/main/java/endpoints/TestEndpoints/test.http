@@ -1,0 +1,57 @@
+@baseUrl = http://localhost:8081
+
+POST {{baseUrl}}/backend/test/json
+Content-Type: application/json
+Accept: text/plain
+
+{
+  "username": "username",
+  "password": "password"
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+GET {{baseUrl}}/backend/test
+Accept: text/plain
+
+###
+
+POST {{baseUrl}}/backend/test/John
+Accept: text/plain
+
+###
+
+POST {{baseUrl}}/backend/game/turn
+Content-Type: application/json
+Accept: text/plain
+
+{
+  "id": 1,
+  "peopleOnGame": [
+    {
+      "username": "player1",
+      "amount_bet": 100,
+      "isFolded": false
+    },
+    {
+      "username": "player2",
+      "amount_bet": 50,
+      "isFolded": true
+    }
+  ],
+  "host": "player1",
+  "turn": "player2",
+  "pot": 150,
+  "isGame": true
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

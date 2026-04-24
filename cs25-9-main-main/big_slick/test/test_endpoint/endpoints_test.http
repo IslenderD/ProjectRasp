@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:8081
+
+GET {{baseUrl}}/backend/test
+Accept: text/plain
+
+###
+
+POST {{baseUrl}}/backend/test/John
+Accept: text/plain
+
+###
